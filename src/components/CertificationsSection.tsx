@@ -1,6 +1,5 @@
 
 import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
 import {
   Carousel,
   CarouselContent,
@@ -58,23 +57,13 @@ const CertificationsSection = () => {
       }
     }, 30);
 
-    // Hover handlers for each card
+    // Hover handlers to pause scrolling
     cards.forEach(card => {
       card.addEventListener('mouseenter', () => {
         clearInterval(scrollInterval);
-        gsap.to(card, {
-          scale: 1.1,
-          zIndex: 10,
-          duration: 0.3,
-        });
       });
 
       card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          scale: 1,
-          zIndex: 1,
-          duration: 0.3,
-        });
         // Resume scrolling
         scrollInterval = setInterval(() => {
           if (carouselRef.current) {
@@ -90,30 +79,15 @@ const CertificationsSection = () => {
     return () => clearInterval(scrollInterval);
   }, []);
 
-  useEffect(() => {
-    // GSAP scroll-triggered animations
-    gsap.from('.section-content', {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: '.section-content',
-        start: 'top 80%',
-        end: 'bottom 20%',
-      }
-    });
-  }, []);
-
   return (
     <section id="certifications" className="bg-[#050505] section-padding overflow-hidden">
-      <div className="container mx-auto">
+      <div className="container mx-auto flex flex-col items-center">
         <div className="relative mb-12 inline-block">
-          <h2 className="section-heading after:content-none">Certifications</h2>
+          <h2 className="section-heading text-center after:content-none">Certifications</h2>
           <div className="absolute -inset-4 border border-tekhelet/30 rounded-lg -z-10"></div>
         </div>
         
-        <div ref={carouselRef} className="section-content relative px-12 overflow-x-hidden">
+        <div ref={carouselRef} className="section-content relative px-12 overflow-x-hidden w-full">
           <div className="flex gap-6 w-max">
             {certificates.map((cert, index) => (
               <div

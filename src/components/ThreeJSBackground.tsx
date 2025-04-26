@@ -5,7 +5,6 @@ const ThreeJSBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    // Simulate a three.js or particle effect with canvas
     const canvas = canvasRef.current;
     if (!canvas) return;
     
@@ -23,7 +22,7 @@ const ThreeJSBackground: React.FC = () => {
 
     // Particle configuration
     const particlesArray: Particle[] = [];
-    const numberOfParticles = 150;
+    const numberOfParticles = 80; // Reduced number for subtlety
     
     // Create particles
     for (let i = 0; i < numberOfParticles; i++) {
@@ -33,7 +32,7 @@ const ThreeJSBackground: React.FC = () => {
     // Animation loop
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'rgba(10, 10, 10, 0.2)';
+      ctx.fillStyle = 'rgba(10, 10, 10, 0.1)'; // More transparent background
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       // Update particles
@@ -54,10 +53,10 @@ const ThreeJSBackground: React.FC = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="canvas-container" />;
+  return <canvas ref={canvasRef} className="canvas-container opacity-40" />; // Reduced opacity
 };
 
-// Particle class
+// Particle class with slower movement
 class Particle {
   x: number;
   y: number;
@@ -71,9 +70,9 @@ class Particle {
     this.canvas = canvas;
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 3 + 1;
-    this.speedX = Math.random() * 0.5 - 0.25;
-    this.speedY = Math.random() * 0.5 - 0.25;
+    this.size = Math.random() * 2 + 0.5; // Smaller particles
+    this.speedX = Math.random() * 0.2 - 0.1; // Slower movement
+    this.speedY = Math.random() * 0.2 - 0.1; // Slower movement
     this.color = getRandomColor();
   }
 
@@ -99,13 +98,19 @@ class Particle {
   }
 }
 
-// Utility function to get a random color
+// Updated color function with more subtle colors
 function getRandomColor() {
-  const colors = ['#522377', '#36195B', '#080B38', '#133155', '#254D70'];
+  const colors = [
+    'rgba(82, 35, 119, 0.3)',
+    'rgba(54, 25, 91, 0.3)',
+    'rgba(8, 11, 56, 0.3)',
+    'rgba(19, 49, 85, 0.3)',
+    'rgba(37, 77, 112, 0.3)'
+  ];
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
-// Connect particles with lines
+// Connect particles with very subtle lines
 function connectParticles(ctx: CanvasRenderingContext2D, particles: Particle[]) {
   for (let i = 0; i < particles.length; i++) {
     for (let j = i; j < particles.length; j++) {
@@ -115,8 +120,8 @@ function connectParticles(ctx: CanvasRenderingContext2D, particles: Particle[]) 
 
       if (distance < 100) {
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(82, 35, 119, ${1 - distance / 100})`;
-        ctx.lineWidth = 0.2;
+        ctx.strokeStyle = `rgba(82, 35, 119, ${0.15 - distance / 1000})`; // More transparent lines
+        ctx.lineWidth = 0.1; // Thinner lines
         ctx.moveTo(particles[i].x, particles[i].y);
         ctx.lineTo(particles[j].x, particles[j].y);
         ctx.stroke();

@@ -1,6 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const allSkills = {
+  all: [
+    ...Object.values({
+      languages: [
+        { name: "JavaScript", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+        { name: "Python", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+        { name: "TypeScript", level: "Intermediate", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" }
+      ],
+      frameworks: [
+        { name: "React", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+        { name: "Node.js", level: "Intermediate", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" }
+      ],
+      databases: [
+        { name: "MongoDB", level: "Intermediate", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+        { name: "PostgreSQL", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" }
+      ],
+      tools: [
+        { name: "Git", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+        { name: "Docker", level: "Intermediate", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" }
+      ]
+    }).flat()
+  ],
   languages: [
     { name: "JavaScript", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
     { name: "Python", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
@@ -64,7 +85,7 @@ const SkillCard: React.FC<{ skill: typeof allSkills["languages"][0] }> = ({ skil
 };
 
 const SkillsSection: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<keyof typeof allSkills>("languages");
+  const [activeCategory, setActiveCategory] = useState<keyof typeof allSkills>("all");
 
   return (
     <section id="skills" className="bg-[#050505] section-padding">
@@ -75,10 +96,11 @@ const SkillsSection: React.FC = () => {
           {Object.keys(allSkills).map((category) => (
             <button
               key={category}
-              className={`px-6 py-2 rounded-full transition-all duration-300 ${activeCategory === category
-                ? "bg-tekhelet text-white"
-                : "bg-transparent border border-tekhelet/30 text-gray-300 hover:border-tekhelet"
-                }`}
+              className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                activeCategory === category
+                  ? "bg-tekhelet text-white"
+                  : "bg-transparent border border-tekhelet/30 text-gray-300 hover:border-tekhelet"
+              }`}
               onClick={() => setActiveCategory(category as keyof typeof allSkills)}
             >
               {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -88,7 +110,7 @@ const SkillsSection: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {allSkills[activeCategory].map((skill, index) => (
-            <SkillCard key={skill.name} skill={skill} />
+            <SkillCard key={`${skill.name}-${index}`} skill={skill} />
           ))}
         </div>
       </div>
