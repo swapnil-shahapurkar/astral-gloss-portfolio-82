@@ -1,45 +1,46 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import ThreeJSBackground from './ThreeJSBackground';
 
-const titles = [
-  'Software Engineer', 
-  'Full Stack Developer', 
-  'Researcher'
-];
-  
-const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
-const [displayedText, setDisplayedText] = useState('');
-const [isDeleting, setIsDeleting] = useState(false);
-const [typingSpeed, setTypingSpeed] = useState(150);
-const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-useEffect(() => {
-  const currentTitle = titles[currentTitleIndex];
-    
-  if (!isDeleting && displayedText === currentTitle) {
-    // Wait before starting to delete
-    timeoutRef.current = setTimeout(() => {
-      setIsDeleting(true);
-      setTypingSpeed(75); // Delete faster than type
-    }, 1500);
-  } else if (isDeleting && displayedText === '') {
-    // Move to the next title
-    setIsDeleting(false);
-    setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
-    setTypingSpeed(150);
-  } else {
-    // Handle typing animation
-    timeoutRef.current = setTimeout(() => {
-      setDisplayedText(currentTitle.substring(0, isDeleting ? displayedText.length - 1 : displayedText.length + 1));
-    }, typingSpeed);
-  }
-
-  return () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-  };
-}, [displayedText, currentTitleIndex, isDeleting, typingSpeed, titles]);
-
 const HeroSection: React.FC = () => {
+  const titles = [
+    'Software Engineer', 
+    'Full Stack Developer', 
+    'Researcher'
+  ];
+    
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const currentTitle = titles[currentTitleIndex];
+      
+    if (!isDeleting && displayedText === currentTitle) {
+      // Wait before starting to delete
+      timeoutRef.current = setTimeout(() => {
+        setIsDeleting(true);
+        setTypingSpeed(75); // Delete faster than type
+      }, 1500);
+    } else if (isDeleting && displayedText === '') {
+      // Move to the next title
+      setIsDeleting(false);
+      setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+      setTypingSpeed(150);
+    } else {
+      // Handle typing animation
+      timeoutRef.current = setTimeout(() => {
+        setDisplayedText(currentTitle.substring(0, isDeleting ? displayedText.length - 1 : displayedText.length + 1));
+      }, typingSpeed);
+    }
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [displayedText, currentTitleIndex, isDeleting, typingSpeed, titles]);
+
   return (
     <section id="home" className="h-screen relative flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 -z-10">
