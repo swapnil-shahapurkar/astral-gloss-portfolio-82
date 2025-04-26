@@ -63,13 +63,13 @@ const HeroSection: React.FC = () => {
         <div className="mt-12">
           <a 
             href="#contact" 
-            className="bg-tekhelet text-white px-8 py-3 rounded-md hover:bg-russian-violet transition-colors duration-300 mr-4 btn-glow"
+            className="bg-tekhelet text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-300 mr-4"
           >
             Contact Me
           </a>
           <a 
             href="#projects" 
-            className="border border-tekhelet text-white px-8 py-3 rounded-md hover:bg-tekhelet/10 transition-colors duration-300 btn-glow"
+            className="border border-tekhelet text-white px-8 py-3 rounded-md hover:bg-tekhelet/5 transition-all duration-300"
           >
             View My Work
           </a>

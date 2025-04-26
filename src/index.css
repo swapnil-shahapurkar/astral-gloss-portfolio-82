@@ -81,3 +81,51 @@
     @apply transition-all duration-300 hover:shadow-[0_20px_50px_rgba(82,35,119,0.4)] transform hover:-translate-y-1 hover:scale-[1.02];
   }
 }
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.section-heading {
+  @apply text-4xl font-bold mb-8 text-center relative;
+}
+
+.section-heading::after {
+  content: none;
+}
+
+.section-padding {
+  @apply py-24 px-6;
+}
+
+.typing-container .typed-cursor {
+  @apply text-tekhelet animate-blink;
+}
+
+.canvas-container {
+  @apply absolute inset-0 -z-10;
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.btn-glow {
+  @apply relative overflow-hidden;
+}
+
+.btn-glow::after {
+  content: '';
+  @apply absolute inset-0 bg-white/20 blur-md opacity-0 transition-opacity duration-300;
+}
+
+.btn-glow:hover::after {
+  @apply opacity-100;
+}
+
+.tilt-card {
+  @apply transition-all duration-300 hover:shadow-[0_20px_50px_rgba(82,35,119,0.4)] transform hover:-translate-y-1 hover:scale-[1.02];
+}

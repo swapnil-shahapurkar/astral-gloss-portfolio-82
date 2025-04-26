@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from './ui/button';
 import { FileText, ExternalLink } from 'lucide-react';
@@ -18,14 +17,19 @@ const ResearchSection = () => {
   return (
     <section id="research" className="bg-[#080808] section-padding">
       <div className="container mx-auto">
-        <div className="relative mb-12 inline-block">
-          <h2 className="section-heading after:content-none">Research Publications</h2>
-          <div className="absolute -inset-4 border border-tekhelet/30 rounded-lg -z-10"></div>
-        </div>
+        <h2 className="section-heading text-center mb-12">Research Publications</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {publications.map((pub, index) => (
-            <div key={index} className="glass-card p-6 rounded-xl tilt-card">
+            <div 
+              key={index} 
+              className="glass-card p-6 rounded-xl transform transition-all duration-500" 
+              style={{
+                opacity: 0,
+                transform: index % 2 === 0 ? 'translateX(-50px)' : 'translateX(50px)',
+                animation: `slideIn 0.6s ease-out ${index * 0.2}s forwards`
+              }}
+            >
               <h3 className="text-xl font-bold mb-3 text-tekhelet">{pub.title}</h3>
               <p className="text-gray-300 text-sm mb-4">{pub.abstract}</p>
               <p className="text-gray-400 text-sm mb-6">{pub.venue}</p>

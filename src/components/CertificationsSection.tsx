@@ -82,17 +82,19 @@ const CertificationsSection = () => {
   return (
     <section id="certifications" className="bg-[#050505] section-padding overflow-hidden">
       <div className="container mx-auto flex flex-col items-center">
-        <div className="relative mb-12 inline-block">
-          <h2 className="section-heading text-center after:content-none">Certifications</h2>
-          <div className="absolute -inset-4 border border-tekhelet/30 rounded-lg -z-10"></div>
-        </div>
+        <h2 className="section-heading text-center mb-12">Certifications</h2>
         
         <div ref={carouselRef} className="section-content relative px-12 overflow-x-hidden w-full">
           <div className="flex gap-6 w-max">
             {certificates.map((cert, index) => (
               <div
                 key={index}
-                className="cert-card flex-none w-[300px] transition-all duration-300"
+                className="cert-card flex-none w-[300px] transform transition-all duration-500"
+                style={{
+                  opacity: 0,
+                  transform: index % 2 === 0 ? 'translateX(-50px)' : 'translateX(50px)',
+                  animation: `slideIn 0.6s ease-out ${index * 0.2}s forwards`
+                }}
               >
                 <div className="glass-card p-6 rounded-xl h-full">
                   <div className="aspect-video mb-4 bg-black/30 rounded-lg overflow-hidden">
