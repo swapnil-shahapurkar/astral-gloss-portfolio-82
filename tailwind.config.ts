@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,6 +53,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				tekhelet: '#522377',
+				"russian-violet": '#36195B',
+				"penn-blue": '#080B38',
+				"berkeley-blue": '#133155',
+				"indigo-dye": '#254D70',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -70,26 +76,49 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'typing': {
+					from: { width: '0' },
+					to: { width: '100%' }
+				},
+				'blink': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'wave': {
+					'0%': { transform: 'translateX(0) translateZ(0) scaleY(1)' },
+					'50%': { transform: 'translateX(-25%) translateZ(0) scaleY(0.8)' },
+					'100%': { transform: 'translateX(-50%) translateZ(0) scaleY(1)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'typing': 'typing 3.5s steps(40, end)',
+				'blink': 'blink 1s step-end infinite',
+				'float': 'float 6s ease-in-out infinite',
+				'wave': 'wave 15s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-glass': 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0))',
+			},
+			boxShadow: {
+				'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+			},
+			backdropBlur: {
+				'xs': '2px',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
