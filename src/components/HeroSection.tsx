@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import ThreeJSBackground from './ThreeJSBackground';
 
@@ -83,10 +82,10 @@ const HeroSection: React.FC = () => {
           </h2>
         </div>
         
-        <div className="mt-12">
+        <div className="mt-12 flex justify-center items-center space-x-4">
           <a 
             href="#contact" 
-            className="relative inline-block bg-tekhelet text-white px-8 py-3 rounded-md transition-all duration-300 mr-4 hover:scale-105 hover:shadow-[0_0_15px_rgba(82,35,119,0.5)] overflow-hidden group"
+            className="relative inline-block bg-tekhelet text-white px-8 py-3 rounded-md transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(82,35,119,0.5)] overflow-hidden group"
           >
             <span className="relative z-10">Contact Me</span>
             <div className="absolute inset-0 bg-gradient-to-r from-tekhelet via-russian-violet to-tekhelet bg-[length:200%] group-hover:animate-shimmer"></div>
