@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from './ui/button';
-import { filePdf, externalLink } from 'lucide-react';
+import { FileText, ExternalLink } from 'lucide-react';
 
 const publications = [
   {
@@ -18,7 +18,10 @@ const ResearchSection = () => {
   return (
     <section id="research" className="bg-[#080808] section-padding">
       <div className="container mx-auto">
-        <h2 className="section-heading">Research Publications</h2>
+        <div className="relative mb-12 inline-block">
+          <h2 className="section-heading after:content-none">Research Publications</h2>
+          <div className="absolute -inset-4 border border-tekhelet/30 rounded-lg -z-10"></div>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {publications.map((pub, index) => (
@@ -28,12 +31,12 @@ const ResearchSection = () => {
               <p className="text-gray-400 text-sm mb-6">{pub.venue}</p>
               
               <div className="flex gap-4">
-                <Button variant="outline" size="sm" className="flex items-center gap-2">
-                  <filePdf className="w-4 h-4" />
+                <Button variant="outline" size="sm">
+                  <FileText className="w-4 h-4 mr-2" />
                   Download PDF
                 </Button>
-                <Button variant="outline" size="sm" className="flex items-center gap-2">
-                  <externalLink className="w-4 h-4" />
+                <Button variant="outline" size="sm">
+                  <ExternalLink className="w-4 h-4 mr-2" />
                   View Paper
                 </Button>
               </div>

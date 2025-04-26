@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import { FileText } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -40,7 +41,8 @@ const Navigation: React.FC = () => {
           <a href="#contact" className="hover:text-tekhelet transition-colors">Contact</a>
         </div>
 
-        <button className="bg-tekhelet text-white px-6 py-2 rounded-md hover:bg-russian-violet transition-colors duration-300">
+        <button className="bg-tekhelet hover:bg-tekhelet/90 text-white px-6 py-2 rounded-md transition-colors duration-300 flex items-center gap-2">
+          <FileText className="w-4 h-4" />
           Resume
         </button>
       </div>
