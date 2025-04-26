@@ -1,48 +1,70 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import ThreeJSBackground from './ThreeJSBackground';
 
-const HeroSection: React.FC = () => {
-  const titles = [
-    'Software Engineer', 
-    'Full Stack Developer', 
-    'Researcher'
-  ];
+const titles = [
+  'Software Engineer', 
+  'Full Stack Developer', 
+  'Researcher'
+];
   
-  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(150);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+const [displayedText, setDisplayedText] = useState('');
+const [isDeleting, setIsDeleting] = useState(false);
+const [typingSpeed, setTypingSpeed] = useState(150);
+const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    const currentTitle = titles[currentTitleIndex];
+useEffect(() => {
+  const currentTitle = titles[currentTitleIndex];
     
-    if (!isDeleting && displayedText === currentTitle) {
-      // Wait before starting to delete
-      timeoutRef.current = setTimeout(() => {
-        setIsDeleting(true);
-        setTypingSpeed(75); // Delete faster than type
-      }, 1500);
-    } else if (isDeleting && displayedText === '') {
-      // Move to the next title
-      setIsDeleting(false);
-      setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
-      setTypingSpeed(150);
-    } else {
-      // Handle typing animation
-      timeoutRef.current = setTimeout(() => {
-        setDisplayedText(currentTitle.substring(0, isDeleting ? displayedText.length - 1 : displayedText.length + 1));
-      }, typingSpeed);
-    }
+  if (!isDeleting && displayedText === currentTitle) {
+    // Wait before starting to delete
+    timeoutRef.current = setTimeout(() => {
+      setIsDeleting(true);
+      setTypingSpeed(75); // Delete faster than type
+    }, 1500);
+  } else if (isDeleting && displayedText === '') {
+    // Move to the next title
+    setIsDeleting(false);
+    setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+    setTypingSpeed(150);
+  } else {
+    // Handle typing animation
+    timeoutRef.current = setTimeout(() => {
+      setDisplayedText(currentTitle.substring(0, isDeleting ? displayedText.length - 1 : displayedText.length + 1));
+    }, typingSpeed);
+  }
 
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, [displayedText, currentTitleIndex, isDeleting, typingSpeed, titles]);
+  return () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  };
+}, [displayedText, currentTitleIndex, isDeleting, typingSpeed, titles]);
 
+const HeroSection: React.FC = () => {
   return (
     <section id="home" className="h-screen relative flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <svg className="w-full h-full">
+          <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(82, 35, 119, 0.1)" strokeWidth="1"/>
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#grid)" className="animate-flow">
+            <animate
+              attributeName="x"
+              from="0"
+              to="50"
+              dur="20s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="y"
+              from="0"
+              to="50"
+              dur="20s"
+              repeatCount="indefinite"
+            />
+          </rect>
+        </svg>
+      </div>
       <ThreeJSBackground />
       
       <div className="container mx-auto text-center z-10">
@@ -63,15 +85,17 @@ const HeroSection: React.FC = () => {
         <div className="mt-12">
           <a 
             href="#contact" 
-            className="bg-tekhelet text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-300 mr-4"
+            className="relative inline-block bg-tekhelet text-white px-8 py-3 rounded-md transition-all duration-300 mr-4 hover:scale-105 hover:shadow-[0_0_15px_rgba(82,35,119,0.5)] overflow-hidden group"
           >
-            Contact Me
+            <span className="relative z-10">Contact Me</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-tekhelet via-russian-violet to-tekhelet bg-[length:200%] group-hover:animate-shimmer"></div>
           </a>
           <a 
             href="#projects" 
-            className="border border-tekhelet text-white px-8 py-3 rounded-md hover:bg-tekhelet/5 transition-all duration-300"
+            className="relative inline-block border border-tekhelet text-white px-8 py-3 rounded-md transition-all duration-300 hover:scale-105 hover:border-opacity-0 hover:shadow-[0_0_15px_rgba(82,35,119,0.3)] group"
           >
-            View My Work
+            <span className="relative z-10">View My Work</span>
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity bg-gradient-to-r from-tekhelet to-russian-violet rounded-md"></div>
           </a>
         </div>
       </div>

@@ -129,3 +129,21 @@
 .tilt-card {
   @apply transition-all duration-300 hover:shadow-[0_20px_50px_rgba(82,35,119,0.4)] transform hover:-translate-y-1 hover:scale-[1.02];
 }
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes flow {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+.animate-shimmer {
+  animation: shimmer 8s linear infinite;
+}
+
+.animate-flow {
+  animation: flow 20s linear infinite;
+}
