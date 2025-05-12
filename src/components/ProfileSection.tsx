@@ -10,15 +10,17 @@ const ProfileSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="glass-card p-8 rounded-2xl">
             <h3 className="text-2xl font-bold mb-4 text-tekhelet">My Journey</h3>
-            <p className="text-gray-300 mb-4">
-              I'm a passionate software engineer with 5+ years of experience building cutting-edge web and mobile applications.
-              My journey in tech started with a fascination for solving complex problems and creating impactful digital experiences.
-            </p>
-            <p className="text-gray-300 mb-6">
-              With a strong background in both frontend and backend development, I bring a holistic approach to every project.
-              I'm constantly exploring new technologies and methodologies to stay at the forefront of this rapidly evolving industry.
-            </p>
-            
+
+            <p className="text-gray-300 mb-4 text-justify">
+  I’m a third-year <span className="italic">CSE student</span> at KLE Technological University with a CGPA of <span className="italic">9.51</span>. My interests focus on <span className="italic">cybersecurity</span>, <span className="italic">networking</span>, and <span className="italic">security technologies</span>, driving my passion for <span className="italic">problem-solving</span>.
+</p>
+<p className="text-gray-300 mb-6 text-justify">
+  While my main focus is <span className="italic">cybersecurity</span>, I’m also eager to explore fields like <span className="italic">software development</span> and <span className="italic">data science</span>, continually adapting to new technologies and expanding my skill set.
+</p>
+
+
+
+
             <div className="flex flex-col space-y-4">
               <div className="flex items-center">
                 <div className="w-12 h-12 rounded-full bg-russian-violet/30 flex items-center justify-center mr-4">
@@ -64,7 +66,7 @@ const ProfileSection: React.FC = () => {
               <div className="h-full w-full rounded-2xl bg-gradient-radial from-tekhelet/20 to-penn-blue/40 flex items-center justify-center">
                 <div className="rounded-full h-80 w-80 bg-gradient-to-br from-indigo-dye to-penn-blue border-4 border-tekhelet/30 flex items-center justify-center overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?auto=format&fit=crop&q=80" 
+                    src="https://img.freepik.com/free-photo/person-playing-3d-video-games-device_23-2151005751.jpg" 
                     alt="Profile" 
                     className="w-full h-full object-cover"
                   />

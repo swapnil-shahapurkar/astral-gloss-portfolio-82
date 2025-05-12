@@ -1,18 +1,20 @@
 
 import React, { useEffect, useRef, useState } from 'react';
+import { FaGithub } from "react-icons/fa";
 
 const projects = [
   {
     id: 1,
-    title: "Smart Home Dashboard",
-    description: "A responsive dashboard for controlling IoT devices with real-time updates using React and Socket.IO.",
-    image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80",
-    category: "Web",
-    technologies: ["React", "Node.js", "Socket.IO", "SCSS"]
+    title: "Mumbai Residencies",
+    description: "A system to display shortes tpath from major cities of karnataka to cities in mumbai and also search for hotels,lodges and restraunts",
+    image: "../../assets/WhatsApp Image 2024-01-04 at 15.38.35_6f15589d.jpg",
+    category: "DSA",
+    technologies: ["C", "Dijkstra", "Graph traversals", "Datastructures","Merge sort"],
+    githubLink:"https://github.com/swapnil-shahapurkar/DSA-project.git"
   },
   {
     id: 2,
-    title: "Blockchain Wallet",
+    title: "Exploratory Data Analysis",
     description: "Secure cryptocurrency wallet with multi-signature support and transaction history visualization.",
     image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?auto=format&fit=crop&q=80",
     category: "Blockchain",
@@ -94,9 +96,15 @@ const ProjectCard: React.FC<{project: typeof projects[0]}> = ({ project }) => {
         </div>
         <div className="flex justify-between items-center">
           <span className="text-xs text-gray-400">{project.category}</span>
-          <button className="bg-tekhelet text-white px-4 py-1 rounded-md hover:bg-russian-violet transition-colors duration-300 text-sm">
-            View Project
-          </button>
+          {/* GitHub Icon */}
+          <a
+            href={project.githubLink} // Assume project has a githubLink field
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-tekhelet hover:text-russian-violet transition-colors duration-300 text-2xl"
+          >
+            <FaGithub />
+          </a>
         </div>
       </div>
     </div>
